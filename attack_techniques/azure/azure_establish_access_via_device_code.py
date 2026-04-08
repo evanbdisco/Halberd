@@ -134,7 +134,7 @@ class AzureEstablishAccessViaDeviceCode(BaseTechnique):
             process = subprocess.Popen(
                 device_code_cmd,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
                 universal_newlines=True
@@ -155,15 +155,15 @@ class AzureEstablishAccessViaDeviceCode(BaseTechnique):
                     if process.poll() is not None:
                         break
                         
-                    # Try to read from stderr
-                    line = process.stderr.readline()
+                    # Read from stdout (stderr is merged via subprocess.STDOUT)
+                    line = process.stdout.readline()
                     if line:
                         output_lines.append(line.strip())
                         
                         # Look for device code pattern
                         device_code_pattern = r"enter the code ([A-Z0-9-]+)"
-                        url_pattern = r"(https://microsoft\.com/devicelogin[^\s]*)"
-                        
+                        url_pattern = r"(https://(?:login\.)?microsoft\.com/device(?:login)?[^\s]*)"
+
                         device_code_match = re.search(device_code_pattern, line, re.IGNORECASE)
                         url_match = re.search(url_pattern, line, re.IGNORECASE)
                         
@@ -192,8 +192,8 @@ class AzureEstablishAccessViaDeviceCode(BaseTechnique):
             if not device_code_info and output_lines:
                 full_output = "\n".join(output_lines)
                 device_code_pattern = r"enter the code ([A-Z0-9-]+)"
-                url_pattern = r"(https://microsoft\.com/devicelogin[^\s]*)"
-                
+                url_pattern = r"(https://(?:login\.)?microsoft\.com/device(?:login)?[^\s]*)"
+
                 device_code_match = re.search(device_code_pattern, full_output, re.IGNORECASE)
                 url_match = re.search(url_pattern, full_output, re.IGNORECASE)
                 
