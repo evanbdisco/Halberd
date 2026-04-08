@@ -134,7 +134,7 @@ class AzureEstablishAccessViaDeviceCode(BaseTechnique):
             process = subprocess.Popen(
                 device_code_cmd,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
                 universal_newlines=True
@@ -156,7 +156,7 @@ class AzureEstablishAccessViaDeviceCode(BaseTechnique):
                         break
                         
                     # Try to read from stderr
-                    line = process.stderr.readline()
+                    line = process.stdout.readline()
                     if line:
                         output_lines.append(line.strip())
                         
