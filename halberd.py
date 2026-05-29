@@ -316,9 +316,6 @@ def save_api_key_to_env_dotenv(n_clicks, api_key_value, model_value):
     """
     if not n_clicks:
         raise PreventUpdate
-    
-    if not model_value:
-        return True, html.Div("Please select an Anthropic model", className="text-danger"), api_key_value, DEFAULT_ANTHROPIC_MODEL
 
     if not api_key_value or api_key_value.strip() == "":
         return True, html.Div("Please enter a valid API key", className="text-danger"), "", model_value
@@ -335,6 +332,7 @@ def save_api_key_to_env_dotenv(n_clicks, api_key_value, model_value):
         set_key(env_file_path, "ANTHROPIC_API_KEY", api_key_value.strip())
         set_key(env_file_path, "ANTHROPIC_MODEL", model_value)
 
+        # Apply updated settings immediately for the current process.
         os.environ["ANTHROPIC_API_KEY"] = api_key_value.strip()
         os.environ["ANTHROPIC_MODEL"] = model_value
         
