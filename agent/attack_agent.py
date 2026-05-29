@@ -206,7 +206,6 @@ class AttackAgent:
 
     def get_anthropic_model(self):
         """Get selected Anthropic model from environment."""
-        load_dotenv()
         return os.environ.get("ANTHROPIC_MODEL", DEFAULT_ANTHROPIC_MODEL)
 
     def count_tokens_for_messages(self, messages, include_system=True):
