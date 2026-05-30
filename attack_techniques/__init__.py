@@ -23,6 +23,11 @@ from .aws.aws_delete_s3_bucket_object import AWSDeleteS3BucketObject
 from .aws.aws_disable_cloudtrail_logging import AWSDisableCloudtrailLogging
 from .aws.aws_modify_guardduty_trusted_ip import AWSModifyGuaddutyTrustedIP
 from .aws.aws_expose_s3_bucket_public import AWSExposeS3BucketPublic
+from .aws.aws_ssm_start_session import AWSSSMStartSession
+from .aws.aws_invoke_lambda import AWSInvokeLambdaFunction
+from .aws.aws_get_secret_value import AWSGetSecretValue
+from .aws.aws_ssrf_imds_credential_theft import AWSSSRFIMDSCredentialTheft
+from .aws.aws_ssh_imds_credential_theft import AWSSSHIMDSCredentialTheft
 
 # Azure Techniques
 from .azure.azure_establish_access_via_device_code import AzureEstablishAccessViaDeviceCode

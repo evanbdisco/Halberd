@@ -3,6 +3,7 @@ import yaml
 import csv
 import shutil
 from pathlib import Path
+from core.aws.aws_session_manager import SessionManager
 
 class Bootstrapper:
     """Handles initialization of application requirements."""
@@ -34,6 +35,7 @@ class Bootstrapper:
         self._setup_msft_tokens()
         self._setup_automator()
         self._check_azure_cli()
+        SessionManager.load_from_disk()
         
     def _create_base_directories(self) -> None:
         """Create required base application directories."""

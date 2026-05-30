@@ -9,6 +9,7 @@ APP_LOG_FILE = APP_LOCAL_DIR+"/app.log"
 MSFT_TOKENS_FILE = APP_LOCAL_DIR+"/MSFT_Graph_Tokens.yml"
 GCP_CREDS_FILE = APP_LOCAL_DIR+"/GCP_Service_Account.json"
 TECHNIQUE_OUTPUT_DIR = APP_LOCAL_DIR+"/technique_output"
+AWS_SESSIONS_FILE = APP_LOCAL_DIR+"/aws_sessions.json"
 
 OUTPUT_DIR = "./output"
 REPORT_DIR = "./report"
